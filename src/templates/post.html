@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}} | DR's Personal Site</title>
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/blog.css">
+    <link rel="stylesheet" href="{{url '/styles/main.css'}}">
+    <link rel="stylesheet" href="{{url '/styles/blog.css'}}">
 </head>
 <body>
     <div class="container">
         <nav class="top-nav">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/blog" class="nav-link">Blog</a>
-            <a href="/about" class="nav-link">About</a>
-            <a href="/faq" class="nav-link">FAQ</a>
+            <a href="{{url '/'}}" class="nav-link">Home</a>
+            <a href="{{url '/blog'}}" class="nav-link">Blog</a>
+            <a href="{{url '/about'}}" class="nav-link">About</a>
+            <a href="{{url '/faq'}}" class="nav-link">FAQ</a>
         </nav>
 
-        <a href="/blog" class="back-button">← Back to Blog</a>
+        <a href="{{url '/blog'}}" class="back-button">← Back to Blog</a>
         
         <main class="blog-post">
             <article class="post">
