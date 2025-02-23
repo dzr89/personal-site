@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nodemon scripts/serve.js",
     "build": "node scripts/build.js",
+    "build:prod": "cross-env NODE_ENV=production node scripts/build.js",
     "serve": "node scripts/serve.js",
     "watch": "nodemon scripts/build.js && node scripts/serve.js"
   },
@@ -20,6 +21,7 @@
     "compression": "^1.7.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "cross-env": "^7.0.3"
   }
 }

@@ -14,6 +14,14 @@ const PUBLIC_DIR = path.join(__dirname, '../public');
 const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
 const STYLES_DIR = path.join(__dirname, '../src/styles');
 
+// Add base URL for GitHub Pages
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/personal-site' : '';
+
+// Register a Handlebars helper for URLs
+Handlebars.registerHelper('url', function(path) {
+    return `${BASE_URL}${path}`;
+});
+
 marked.setOptions({
     headerIds: true,
     gfm: true,
@@ -84,7 +92,7 @@ async function build() {
                     title: attributes.title,
                     date: attributes.date,
                     description: attributes.description,
-                    url: `/blog/${filename.replace('.md', '.html')}`,
+                    url: `${BASE_URL}/blog/${filename.replace('.md', '.html')}`,
                     formattedDate,
                     tags: attributes.tags
                 });
@@ -159,7 +167,7 @@ async function build() {
                             </article>
                         `).join('\n')}
                 </div>
-                <p class="more-posts"><a href="/blog">View all posts →</a></p>
+                <p class="more-posts"><a href="${BASE_URL}/blog">View all posts →</a></p>
             </section>
         `;
 
