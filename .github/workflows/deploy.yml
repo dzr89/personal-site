@@ -34,12 +34,12 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm install -g cross-env
 
       - name: Build site
-        run: |
-          npm install --save-dev cross-env
-          npm run build:prod
+        run: npm run build:prod
         env:
           NODE_ENV: production
 
