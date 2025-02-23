@@ -1,2 +1,19 @@
+# Dependencies
 node_modules/
-dist/ 
+
+# Build output
+public/
+
+# Environment variables
+.env
+.env.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db 
