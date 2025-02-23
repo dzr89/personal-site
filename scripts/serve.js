@@ -8,6 +8,14 @@ const Handlebars = require('handlebars');
 const app = express();
 const PORT = 3001;
 
+// Add base URL for GitHub Pages
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/personal-site' : '';
+
+// Register a Handlebars helper for URLs
+Handlebars.registerHelper('url', function(path) {
+    return `${BASE_URL}${path}`;
+});
+
 // Serve static files from public directory
 app.use(express.static('public'));
 // Add cache control headers

@@ -142,43 +142,8 @@ async function build() {
         });
         await fs.writeFile(path.join(PUBLIC_DIR, 'blog', 'index.html'), blogIndexHtml);
 
-        // Create home page with latest posts
-        const homePageContent = `
-            <section class="hero">
-                <h1>Welcome to My Personal Space</h1>
-                <p>Hi! I'm DR, and this is where I share my thoughts, ideas, and explorations in technology and beyond. Feel free to explore my blog posts and get to know more about what I do.</p>
-            </section>
-
-            <section class="latest-posts">
-                <h2>Latest Posts</h2>
-                <div class="posts-list">
-                    ${postsList
-                        .sort((a, b) => new Date(b.date) - new Date(a.date))
-                        .slice(0, 3) // Show only the 3 most recent posts
-                        .map(post => `
-                            <article class="post-preview">
-                                <h3><a href="${post.url}">${post.title}</a></h3>
-                                <time datetime="${post.date}">${post.formattedDate}</time>
-                                ${post.description ? `<p>${post.description}</p>` : ''}
-                                ${post.tags ? `
-                                <div class="tags">
-                                    ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                                </div>` : ''}
-                            </article>
-                        `).join('\n')}
-                </div>
-                <p class="more-posts"><a href="${BASE_URL}/blog">View all posts →</a></p>
-            </section>
-        `;
-
-        // Write home page
-        const homePageHtml = mainTemplate({
-            content: homePageContent,
-            title: 'DR\'s Site',
-            isPost: false,
-            isHome: true
-        });
-        await fs.writeFile(path.join(PUBLIC_DIR, 'index.html'), homePageHtml);
+        // Skip generating index.html since we're managing it directly
+        console.log('Skipping index.html generation - using direct file instead');
 
         console.log('Build completed successfully!');
     } catch (error) {
