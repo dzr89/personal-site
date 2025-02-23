@@ -3,138 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} | DR's Personal Site</title>
-    <link rel="stylesheet" href="{{url '/styles/main.css'}}">
-    <link rel="stylesheet" href="{{url '/styles/blog.css'}}">
+    <title>{{title}} | David Rosenberg</title>
     <style>
-        :root {
-            --background-color: #f4f1ea;
-            --accent-color: #ffc107;
-            --text-color: #000000;
-        }
-
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f4f1ea;
         }
 
-        .top-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
+        nav {
+            padding: 1rem;
         }
 
         .nav-link {
-            color: var(--text-color);
+            color: #333;
             text-decoration: none;
-            font-size: 1.1rem;
-            position: relative;
+            margin-right: 1rem;
+            font-weight: 500;
         }
 
         .nav-link:hover {
-            color: var(--text-color);
-            opacity: 0.8;
+            color: #4a5;
+            border-bottom: 2px solid #4a5;
         }
 
-        .content {
-            max-width: 800px;
+        .nav-link.active {
+            color: #4a5;
+            border-bottom: 2px solid #4a5;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        .content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--text-color);
+        .card {
+            background-color: #8ab886;
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            max-width: 800px;
         }
 
-        /* Blog specific styles */
-        .posts-list {
-            margin: 2rem 0;
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            margin: 2rem 0 1rem 0;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 1rem 0;
+            line-height: 1.6;
         }
 
         .post-preview {
-            margin-bottom: 2rem;
-            padding: 1rem;
+            background-color: #f4f1ea;
+            padding: 1.5rem;
             border-radius: 0.5rem;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 1rem 0;
         }
 
         .post-preview h2 {
-            margin: 0 0 0.5rem 0;
+            margin-top: 0;
         }
 
         .post-preview a {
-            color: var(--text-color);
+            color: #333;
             text-decoration: none;
         }
 
-        .post-preview time {
+        .post-preview a:hover {
+            color: #4a5;
+        }
+
+        time {
             color: #666;
             font-size: 0.9rem;
+            display: block;
+            margin: 0.5rem 0;
         }
 
         .tags {
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
 
         .tag {
             display: inline-block;
-            padding: 0.2rem 0.5rem;
+            padding: 0.2rem 0.8rem;
             margin: 0 0.25rem;
-            background-color: var(--accent-color);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--text-color);
+            background-color: #f4f1ea;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            color: #333;
         }
 
         .back-button {
             display: inline-block;
-            margin: 1rem 2rem;
-            color: var(--text-color);
+            color: #333;
             text-decoration: none;
             font-weight: 500;
+            margin-bottom: 1rem;
         }
 
         .back-button:hover {
-            opacity: 0.8;
+            color: #4a5;
         }
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-links">
-            <a href="{{url '/'}}" class="nav-link">Home</a>
-            <a href="{{url '/blog'}}" class="nav-link">Blog</a>
-            <a href="{{url '/about'}}" class="nav-link">About</a>
-            <a href="{{url '/faq'}}" class="nav-link">FAQ</a>
-        </div>
+    <nav>
+        <a href="{{url '/'}}" class="nav-link {{#if isHome}}active{{/if}}">Home</a>
+        <a href="{{url '/blog'}}" class="nav-link {{#if isPost}}active{{/if}}">Blog</a>
+        <a href="{{url '/about'}}" class="nav-link">About</a>
+        <a href="{{url '/faq'}}" class="nav-link">FAQ</a>
     </nav>
 
-    {{#if isPost}}
-    <a href="{{url '/blog'}}" class="back-button">← Back to Blog</a>
-    {{else}}
-    {{#unless isHome}}
-    <a href="{{url '/'}}" class="back-button">← Back to Home</a>
-    {{/unless}}
-    {{/if}}
-    
-    <main class="content">
-        {{{content}}}
-    </main>
-
-    <footer>
-        <p>&copy; 2024 DR. All rights reserved.</p>
-    </footer>
+    <div class="container">
+        <div class="card">
+            {{#if isPost}}
+            <a href="{{url '/blog'}}" class="back-button">← Back to Blog</a>
+            {{/if}}
+            {{{content}}}
+        </div>
+    </div>
 </body>
 </html> 
