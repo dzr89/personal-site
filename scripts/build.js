@@ -145,8 +145,8 @@ async function build() {
         // Create home page with latest posts
         const homePageContent = `
             <section class="hero">
-                <h1>Welcome to DR's Site</h1>
-                <p>Thoughts, ideas, and explorations in technology and beyond.</p>
+                <h1>Welcome to My Personal Space</h1>
+                <p>Hi! I'm DR, and this is where I share my thoughts, ideas, and explorations in technology and beyond. Feel free to explore my blog posts and get to know more about what I do.</p>
             </section>
 
             <section class="latest-posts">
