@@ -35,13 +35,28 @@ marked.setOptions({
 
 async function build() {
     try {
+        // Clean the public directory
+        await fs.emptyDir(PUBLIC_DIR);
+        
         // Ensure all required directories exist
         await fs.ensureDir(PUBLIC_DIR);
         await fs.ensureDir(path.join(PUBLIC_DIR, 'blog'));
         await fs.ensureDir(path.join(PUBLIC_DIR, 'styles'));
 
-        // Copy static assets
-        await fs.copy(STYLES_DIR, path.join(PUBLIC_DIR, 'styles'), { overwrite: true });
+        // Copy static assets with cache busting
+        const deployTime = process.env.DEPLOY_TIME || Date.now();
+        console.log(`Building with deploy time: ${deployTime}`);
+        
+        // Copy and version styles
+        const styleFiles = await fs.readdir(STYLES_DIR);
+        for (const file of styleFiles) {
+            const content = await fs.readFile(path.join(STYLES_DIR, file), 'utf-8');
+            await fs.writeFile(
+                path.join(PUBLIC_DIR, 'styles', file),
+                `/* Version: ${deployTime} */\n${content}`
+            );
+            console.log(`Copied and versioned style: ${file}`);
+        }
         
         // Copy static HTML files from root
         const staticHtmlFiles = ['index.html', 'about.html', 'faq.html'];
@@ -49,8 +64,14 @@ async function build() {
             const sourcePath = path.join(ROOT_DIR, file);
             const destPath = path.join(PUBLIC_DIR, file);
             if (await fs.pathExists(sourcePath)) {
-                await fs.copy(sourcePath, destPath);
-                console.log(`Copied static file: ${file}`);
+                let content = await fs.readFile(sourcePath, 'utf-8');
+                // Update style paths to include version
+                content = content.replace(
+                    /(href=["'])styles\//g,
+                    `$1${BASE_URL}/styles/`
+                );
+                await fs.writeFile(destPath, content);
+                console.log(`Copied and processed static file: ${file}`);
             }
         }
 

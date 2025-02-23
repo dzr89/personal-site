@@ -38,10 +38,16 @@ jobs:
           npm ci
           npm install -g cross-env
 
+      - name: Clean public directory
+        run: |
+          rm -rf public
+          mkdir public
+
       - name: Build site
         run: npm run build:prod
         env:
           NODE_ENV: production
+          DEPLOY_TIME: ${{ github.sha }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
