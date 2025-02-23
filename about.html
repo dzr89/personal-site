@@ -3,53 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | DR's Personal Site</title>
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/blog.css">
+    <title>About | David Rosenberg</title>
     <style>
-        .nav-button {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #4a5568;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin: 1rem 0;
-        }
-        
-        .nav-button:hover {
-            background-color: #2d3748;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f4f1ea;
         }
 
-        .content {
+        nav {
+            padding: 1rem;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #4a5;
+            border-bottom: 2px solid #4a5;
+        }
+
+        .nav-link.active {
+            color: #4a5;
+            border-bottom: 2px solid #4a5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background-color: #8ab886;
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
             max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 1rem 0;
             line-height: 1.6;
         }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="./" class="nav-link">Home</a>
+        <a href="blog" class="nav-link">Blog</a>
+        <a href="about" class="nav-link active">About</a>
+        <a href="faq" class="nav-link">FAQ</a>
+    </nav>
+
     <div class="container">
-        <nav class="top-nav">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/blog" class="nav-link">Blog</a>
-            <a href="/about" class="nav-link">About</a>
-            <a href="/faq" class="nav-link">FAQ</a>
-        </nav>
-
-        <a href="/" class="back-button">← Back to Home</a>
-        
-        <main class="content">
-            <h1>About</h1>
-<p>Welcome to my website! This is the about page where you can learn more about me and this site.</p>
-<p>[Feel free to customize this content with your own information] </p>
-
-        </main>
+        <div class="card">
+            <h1>About Me</h1>
+            <p>Welcome to my website! This is the about page where you can learn more about me and this site.</p>
+            <p>[Feel free to customize this content with your own information]</p>
+        </div>
     </div>
-
-    <footer>
-        <p>&copy; 2024 DR. All rights reserved.</p>
-    </footer>
 </body>
 </html> 
