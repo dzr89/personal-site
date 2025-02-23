@@ -15,7 +15,7 @@ const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
 const STYLES_DIR = path.join(__dirname, '../src/styles');
 
 // Add base URL for GitHub Pages
-const BASE_URL = process.env.NODE_ENV === 'production' ? '/personal-site' : '';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/dr-personal-site' : '';
 
 // Register a Handlebars helper for URLs
 Handlebars.registerHelper('url', function(path) {
