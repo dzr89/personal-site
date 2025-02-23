@@ -13,9 +13,10 @@ const TEMPLATES_DIR = path.join(__dirname, '../src/templates');
 const PUBLIC_DIR = path.join(__dirname, '../public');
 const POSTS_DIR = path.join(CONTENT_DIR, 'posts');
 const STYLES_DIR = path.join(__dirname, '../src/styles');
+const ROOT_DIR = path.join(__dirname, '..');
 
 // Add base URL for GitHub Pages
-const BASE_URL = process.env.NODE_ENV === 'production' ? '/dr-personal-site' : '';
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/personal-site' : '';
 
 // Register a Handlebars helper for URLs
 Handlebars.registerHelper('url', function(path) {
@@ -41,6 +42,17 @@ async function build() {
 
         // Copy static assets
         await fs.copy(STYLES_DIR, path.join(PUBLIC_DIR, 'styles'), { overwrite: true });
+        
+        // Copy static HTML files from root
+        const staticHtmlFiles = ['index.html', 'about.html', 'faq.html'];
+        for (const file of staticHtmlFiles) {
+            const sourcePath = path.join(ROOT_DIR, file);
+            const destPath = path.join(PUBLIC_DIR, file);
+            if (await fs.pathExists(sourcePath)) {
+                await fs.copy(sourcePath, destPath);
+                console.log(`Copied static file: ${file}`);
+            }
+        }
 
         // Read and compile templates
         const mainTemplateSource = await fs.readFile(path.join(TEMPLATES_DIR, 'main.html'), 'utf-8');
