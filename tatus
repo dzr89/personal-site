@@ -1,0 +1,10 @@
+384190c - fix: add cache busting and clean build process
+552cd6f - fix: copy static HTML files to public directory during build
+ae7ff80 - fix: use relative paths for all assets and links
+78a7635 - fix: update all paths to use correct base URL for GitHub Pages
+dc0b7e3 - fix: update BASE_URL to match repository name
+8611f66 - design updates and new pages
+d9e716c - Clean up repository structure and update gitignore
+e0c021e - Fix cross-env installation in GitHub Actions workflow
+e192e63 - Update package-lock.json with all dependencies
+bf63a43 - Update GitHub Pages deployment workflow with proper permissions

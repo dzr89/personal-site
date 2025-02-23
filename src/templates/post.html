@@ -6,6 +6,28 @@
     <title>{{title}} | DR's Personal Site</title>
     <link rel="stylesheet" href="{{url '/styles/main.css'}}">
     <link rel="stylesheet" href="{{url '/styles/blog.css'}}">
+    <style>
+        .newsletter-section {
+            background-color: #f7fafc;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        .newsletter-section h2 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .newsletter-section p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        .formkit-form {
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -38,6 +60,21 @@
                     {{{content}}}
                 </div>
             </article>
+
+            <section class="newsletter-section">
+                <h2>Subscribe to my newsletter</h2>
+                <p>Get notified when I publish new articles. No spam, unsubscribe at any time.</p>
+                <form action="https://app.convertkit.com/forms/9c2ed97689/subscriptions" method="post" class="seva-form formkit-form">
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <input type="email" name="email_address" placeholder="Your email address" required 
+                            style="padding: 8px 16px; border: 1px solid #e2e8f0; border-radius: 4px; min-width: 250px;">
+                        <button type="submit" 
+                            style="background-color: #4a5568; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">
+                            Subscribe
+                        </button>
+                    </div>
+                </form>
+            </section>
         </main>
     </div>
 
